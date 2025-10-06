@@ -1,6 +1,7 @@
 # Assignment Part 1
 import numpy_financial as npf
 
+# Define the Mortgage_Payments class
 class Mortgage_Payments:
     def __init__ (self, r, nper, years, P):
          self.r = r
@@ -35,13 +36,16 @@ class Mortgage_Payments:
               npf.pmt(eff_monthly_rate,Monthly_n,-P)/4
                 )
 
+# User inputs
 P = float(input ("Please enter the principal amount ($):"))
 r = float(input ("Please enter the quoted/prevailing interest rate (%):"))
 years = float (input ("Please enter the amortization period in years:"))
 
+# Calculate effective interest rate based on 2 compunding periods per year
 annual_rate = r/100
 effectiveRate  = ((1+ (annual_rate/2))**2)
 
+# Define the object and calculate payments
 Mortgage = Mortgage_Payments(effectiveRate, years*12, years, P)
 monthly, semi_monthly, bi_weekly, weekly, rapid_bi_weekly, rapid_weekly = Mortgage.payment(effectiveRate, years, P)
 
@@ -57,6 +61,7 @@ print("-"*40)
 # Assignment Part 2
 import csv
 
+# Define the Exchange_Rates class
 class Exchange_Rates:
     def __init__(self,CAD,USD,amount, From, To):
         self.CAD = CAD
@@ -78,10 +83,12 @@ class Exchange_Rates:
         else:
             return "Error: Please enter a valid currency (USD/CAD)."
 
+# User inputs
 From = str(input ("Please enter the FROM currency (USD/CAD):"))
 To = str(input ("Please enter the TO currency (USD/CAD):"))
 amount = float (input ("Please enter the amount ($):"))
 
+# Define the object and perform conversion
 Exchange = Exchange_Rates(0,0,amount, From, To)
 result = Exchange.convert(From, To, amount)
 print(f"Converted Amount: {result:.2f} {To}")
